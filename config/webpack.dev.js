@@ -3,18 +3,29 @@ const path = require("path")
 module.exports = {
     mode: 'development',
     entry: {
-        main: ["./src/main.js"]
+        main: ["@babel/polyfill","./src/main.js"]
     },
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
-        publicPath: "/"
+        publicPath: "/bundle"
     },
     devServer: {
-        contentBase: "dist"
+        contentBase: "dist",
+        overlay: true,
+        writeToDisk: true
     },
     module: {
         rules: [
+            {
+                test: /\.js$/,
+                use: [
+                    {
+                        loader: "babel-loader"
+                    }
+                ],
+                exclude: /node_modules/
+            },
             {
                 test: /\.css$/,
                 use:[
