@@ -1,5 +1,6 @@
 const path = require("path")
 const webpack = require("webpack")
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     mode: 'development',
@@ -9,15 +10,24 @@ module.exports = {
     output: {
         filename: "[name]-bundle.js",
         path: path.resolve(__dirname, "../dist"),
-        publicPath: "/bundle"
+        publicPath: "/"
     },
     devServer: {
         stats: {
             colors: true
         },
+        writeToDisk: true
     },
     module: {
         rules: [
+            {
+                test: /\.html$/,
+                use: [
+                    {
+                        loader: "html-loader"
+                    }
+                ]
+            },
             {
                 test: /\.js$/,
                 use: [
@@ -41,6 +51,9 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new HtmlWebpackPlugin({
+            template: "./src/index.html"
+        })
     ]
 }
