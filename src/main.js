@@ -2,6 +2,7 @@ require("@babel/runtime/regenerator")
 require("webpack-hot-middleware/client")
 require("./index.html")
 require('./main.css');
+require("./app")
 
 var a = async (args) => {
     const {a,b} = args;

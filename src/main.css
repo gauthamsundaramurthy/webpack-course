@@ -1,10 +1,9 @@
 body {
     margin: 0;
-    background-color: blue;
+    background-color: red;
 }
 
 h1 {
-    height: 100vh;
     display: flex;
     color: white;
     align-items: center;
@@ -12,4 +11,14 @@ h1 {
     font-size: 5em;
     font-family: sans-serif;
     text-shadow: 0 0 20px black;
+}
+
+button {
+    display: block;
+    margin: auto;
+}
+
+img {
+    display: block;
+    margin: auto;
 }
