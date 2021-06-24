@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: 'development',
     entry: {
-        main: ["@babel/polyfill","./src/main.js"]
+        main: ["@babel/polyfill", "./src/main.js"]
     },
     output: {
         filename: "[name]-bundle.js",
@@ -39,7 +39,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use:[
+                use: [
                     {
                         loader: "style-loader"
                     },
@@ -49,11 +49,37 @@ module.exports = {
                 ]
             },
             {
+                test: /\.scss$/,
+                use: [
+                    {
+                        loader: "style-loader"
+                    },
+                    {
+                        loader: "css-loader"
+                    },
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                            postcssOptions: {
+                                plugins: [
+                                    [
+                                        "postcss-preset-env",
+                                    ]
+                                ],
+                            },
+                        }
+                    },
+                    {
+                        loader: "sass-loader"
+                    }
+                ]
+            },
+            {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
-                  {
-                    loader: 'file-loader',
-                  }
+                    {
+                        loader: 'file-loader',
+                    }
                 ]
             }
         ]

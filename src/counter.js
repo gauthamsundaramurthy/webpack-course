@@ -13,10 +13,10 @@ export default class extends React.Component {
     }
 
     render() {
-        return <>
+        return <div class="profile">
             <h1> {this.state.counter} </h1>
             <button onClick={this.onCounterUpdate}> Update </button>
             <img src={avatar} alt="avatar" />
-        </>
+        </div>
     }
 }
