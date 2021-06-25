@@ -44,7 +44,12 @@ module.exports = {
                         loader: "style-loader"
                     },
                     {
-                        loader: "css-loader"
+                        loader: "css-loader",
+                        options: {
+                            modules: {
+                                localIdentName: "[path][name]__[local]--[hash:base64:5]"
+                            }
+                        }
                     }
                 ]
             },
@@ -63,7 +68,7 @@ module.exports = {
                             postcssOptions: {
                                 plugins: [
                                     [
-                                        "postcss-preset-env",
+                                        "postcss-preset-env"
                                     ]
                                 ],
                             },

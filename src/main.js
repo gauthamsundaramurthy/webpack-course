@@ -1,7 +1,6 @@
 require("@babel/runtime/regenerator")
 require("webpack-hot-middleware/client")
 require("./index.html")
-require('./main.scss');
 require("./app")
 
 var a = async (args) => {
