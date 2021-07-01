@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const MinifyPlugin = require("babel-minify-webpack-plugin");
 
 module.exports = env => {
     return {
@@ -103,7 +104,8 @@ module.exports = env => {
                 'process.env': {
                     'NODE_ENV': JSON.stringify(env.NODE_ENV)
                 }
-            })
+            }),
+            new MinifyPlugin()
         ],
         optimization: {
             minimizer: [
