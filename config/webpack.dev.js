@@ -5,7 +5,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: 'development',
     entry: {
-        main: ["@babel/polyfill", "./src/main.js"]
+        main: [
+            "@babel/runtime/regenerator", 
+            "@babel/polyfill",
+            "webpack-hot-middleware/client",
+            "./src/main.js"
+        ]
     },
     output: {
         filename: "[name]-bundle.js",
@@ -90,7 +95,7 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
         })

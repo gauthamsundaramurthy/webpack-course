@@ -1,6 +1,3 @@
-// require("@babel/runtime/regenerator")
-// require("webpack-hot-middleware/client")
-require("./index.html")
 require("./app")
 
 var a = async (args) => {
@@ -10,3 +7,5 @@ var a = async (args) => {
 }
 
 a({a:1 , b:2})
+
+console.log(`Environment is ${process.env.NODE_ENV}`)

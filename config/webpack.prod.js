@@ -92,12 +92,16 @@ module.exports = {
         ]
     },
     plugins: [
-        // new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({
             filename: "[name]-[contenthash].css"
         }),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new webpack.DefinePlugin({
+            'process.env': {
+                'NODE_ENV': JSON.stringify("production")
+            }
         })
     ],
     optimization: {
