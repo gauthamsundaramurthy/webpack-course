@@ -3,7 +3,7 @@ const webpack = require("webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
-const MinifyPlugin = require("babel-minify-webpack-plugin");
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = env => {
     return {
@@ -104,14 +104,14 @@ module.exports = env => {
                 'process.env': {
                     'NODE_ENV': JSON.stringify(env.NODE_ENV)
                 }
-            }),
-            new MinifyPlugin()
+            })
         ],
         optimization: {
             minimizer: [
             // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
             // `...`,
             new CssMinimizerPlugin(),
+            new UglifyJsPlugin()
             ],
         }
     }
