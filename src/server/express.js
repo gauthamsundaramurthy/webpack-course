@@ -16,9 +16,9 @@ if(!isProd){
     const webpackHotMiddleware = require("webpack-hot-middleware")(compiler);
     server.use(webpackHotMiddleware);
 }
- 
-const staticMiddleware = express.static("dist");
-server.use(staticMiddleware)
+
+const expressStaticGzip = require("express-static-gzip");
+server.use(expressStaticGzip("dist"));
 
 const PORT = process.env.PORT || 8080;
 server.listen(PORT, () => {

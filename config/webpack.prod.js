@@ -4,6 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = env => {
     return {
@@ -104,6 +105,9 @@ module.exports = env => {
                 'process.env': {
                     'NODE_ENV': JSON.stringify(env.NODE_ENV)
                 }
+            }),
+            new CompressionPlugin({
+                algorithm: "gzip"
             })
         ],
         optimization: {
