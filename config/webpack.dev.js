@@ -1,11 +1,18 @@
 const path = require("path")
 const webpack = require("webpack")
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
     mode: 'development',
     entry: {
         main: [
+            "@babel/runtime/regenerator", 
+            "@babel/polyfill",
+            "webpack-hot-middleware/client",
+            "./src/main.js"
+        ],
+        other: [
             "@babel/runtime/regenerator", 
             "@babel/polyfill",
             "webpack-hot-middleware/client",
@@ -23,6 +30,19 @@ module.exports = {
         },
         writeToDisk: true
     },
+    optimization: {
+        splitChunks: {
+          // include all types of chunks
+          chunks: 'all',
+          cacheGroups: {
+            commons: {
+              name: 'commons',
+              chunks: 'initial',
+              minChunks: 2,
+            },
+          },
+        },
+      },
     module: {
         rules: [
             {
@@ -98,6 +118,9 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new HtmlWebpackPlugin({
             template: "./src/index.html"
+        }),
+        new BundleAnalyzerPlugin({
+            generateStatsFile: true
         })
     ]
 }

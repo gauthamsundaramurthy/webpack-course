@@ -10,7 +10,8 @@ module.exports = env => {
     return {
         mode: 'production',
         entry: {
-            main: ["@babel/polyfill", "./src/main.js"]
+            main: ["@babel/polyfill", "./src/main.js"],
+            other: ["@babel/polyfill", "./src/main.js"]
         },
         output: {
             filename: "[name]-bundle.js",
@@ -115,6 +116,17 @@ module.exports = env => {
             new CssMinimizerPlugin(),
             new UglifyJsPlugin()
             ],
+            splitChunks: {
+                // include all types of chunks
+                chunks: 'all',
+                cacheGroups: {
+                  commons: {
+                    name: 'commons',
+                    chunks: 'initial',
+                    minChunks: 2,
+                  },
+                },
+              },
         }
     }
 }
